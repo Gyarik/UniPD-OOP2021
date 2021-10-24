@@ -2,7 +2,6 @@
 #include "telefonata.h"
 
 using std::cout;
-using std::cin;
 using std::endl;
 
 // Constructors
@@ -26,8 +25,8 @@ bool telefonata::operator ==(const telefonata& t) const {
 	return inizio==t.inizio && fine==t.fine && numero==t.numero;
 }
 
-std::ostream& operator <<(std::ostream& s, const telefonata& t) {
+std::ostream& operator <<(std::ostream& os, const telefonata& t) {
 	// Cool formatting
-	s << "Inizio: " << t.Inizio() << endl << "Fine: " << t.Fine() << endl << "Numero Chiamato: " << t.Numero();
-	return s;
+	os << "Inizio: " << t.Inizio() << endl << "Fine: " << t.Fine() << endl << "Numero Chiamato: " << t.Numero();
+	return os;
 }

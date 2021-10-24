@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Raz.h"
+
 using std::cout;
 using std::endl;
 

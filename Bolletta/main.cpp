@@ -12,6 +12,7 @@ using std::endl;
 int main() {
 	orario Mezzanotte;
 	orario Adesso(1, 23, 30);
+
 	// cout << Adesso.Ore() << ":" << Adesso.Minuti() << ":" << Adesso.Secondi() << endl;
 	// int x=Adesso;
 	// cout << x << " Secondi" << endl;
@@ -32,7 +33,6 @@ int main() {
 	// cout << (Ora == DUE_ORE_E_UN_QUARTO);
 	// cout << (Ora > DUE_ORE_E_UN_QUARTO);
 	// cout << (Ora < DUE_ORE_E_UN_QUARTO) << endl << endl;
-
 
 	cout << "TELEFONATA" << endl << endl;
 

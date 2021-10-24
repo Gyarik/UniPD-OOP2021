@@ -3,9 +3,7 @@
 #include "orario.h"
 
 using std::cout;
-using std::cin;
 using std::endl;
-
 
 orario::orario (int h, int m, int s) {
 	// If input does not conform, default to midnight

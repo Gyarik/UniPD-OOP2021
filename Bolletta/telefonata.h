@@ -30,5 +30,4 @@ public:
 // << overloading for formatted object print output
 std::ostream& operator <<(std::ostream&, const telefonata&);
 
-
-#endif /* TELEFONATA_H_ */
+#endif

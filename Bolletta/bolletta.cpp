@@ -2,10 +2,6 @@
 #include <string>
 #include "bolletta.h"
 
-using std::cout;
-using std::cin;
-using std::endl;
-
 // Node constructor
 bolletta::nodo::nodo(const telefonata& t, nodo* s) : info(t), next(s) {}
 

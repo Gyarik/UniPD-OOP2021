@@ -44,5 +44,4 @@ private:
 // << overloading for formatted object print output
 std::ostream& operator <<(std::ostream&, const orario&);
 
-
-#endif /* ORARIO_H_ */
+#endif
