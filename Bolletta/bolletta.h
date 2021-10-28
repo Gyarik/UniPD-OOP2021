@@ -65,7 +65,7 @@ public:
     // Destructor
     ~bolletta();
 
-    // Indicates list stard and end for iterator
+    // Indicates list start and end for iterator
     iteratore begin() const;
     iteratore end() const;
 };
