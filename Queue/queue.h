@@ -3,32 +3,38 @@
 
 #include <iostream>
 
+// DEPRECATED
 // Single item class
-template <class T> class QueueItem {
-public:
-    // Constructor
-    QueueItem(const T&, QueueItem* =0);
-    // Data
-    T info;
-    // Pointer to next item (?)
-    QueueItem* next;
-    // TO DO
-    // QueueItem* copia(QueueItem);
-};
-
-template <class T> QueueItem<T>::QueueItem(const T& val, QueueItem* i) : info(val), next(i) {}
-
-// TO DO
-// template <class T> QueueItem<T>* QueueItem<T>::copia(QueueItem i) {
-//     if(!i)
-//         return 0;
-//     else
-//         return new QueueItem(i->info, copia(i->next));
-// }
+// template <class T> class QueueItem {
+// public:
+//     // Constructor
+//     QueueItem(const T&, QueueItem* =0);
+//     // Data
+//     T info;
+//     // Pointer to next item (?)
+//     QueueItem* next;
+//     // TO DO
+//     // QueueItem* copia(QueueItem);
+// };
+// template <class T> QueueItem<T>::QueueItem(const T& val, QueueItem* i) : info(val), next(i) {}
 
 // Queue class
 template <class T> class Queue {
 private:
+    // Single item nested class
+    class QueueItem {
+    private:
+        friend class Queue<T>;
+    public:
+        // Constructor
+        QueueItem(const T&, QueueItem* =0);
+        // Data
+        T info;
+        // Pointer to next item
+        QueueItem* next;
+        // TO DO
+        // QueueItem* copia(QueueItem);
+    };
     // First and last item
     QueueItem<T>* primo;
     QueueItem<T>* ultimo;
@@ -48,7 +54,18 @@ public:
     // Queue& operator =(const Queue&);
 };
 
-// Default constructor
+// QueueItem constructor
+template <class T> Queue<T>::QueueItem::QueueItem(const T& val, QueueItem* q): info(val), next(q) {}
+
+// TO DO
+// template <class T> class Queue<T>::QueueItem* Queue<T>::QueueItem::copia(QueueItem* q) {
+// 	if(!q)
+// 		return 0;
+// 	else
+// 		return new QueueItem(q->info, copia(q->next));
+// }
+
+// Queue constructor
 template <class T> Queue<T>::Queue() : primo(0), ultimo(0) {}
 
 template <class T> bool Queue<T>::empty() const {
@@ -59,10 +76,10 @@ template <class T> bool Queue<T>::empty() const {
 template <class T> void Queue<T>::add(const T& val) {
     // If queue is empty, define a new item for both first and last place
     if(empty())
-        primo = ultimo = new QueueItem<T>(val);
+        primo = ultimo = new Queue<T>::QueueItem(val);
     // Otherwise add to end of queue
     else {
-        ultimo->next = new QueueItem<T>(val);
+        ultimo->next = new Queue<T>::QueueItem(val);
         ultimo = ultimo->next;
     }
 }
@@ -74,7 +91,7 @@ template <class T> T Queue<T>::remove() {
         exit(1);
     }
     // If queue is not empty, delete first place in the queue and return removed value of item
-    QueueItem<T>* p = primo;
+    Queue<T>::QueueItem* p = primo;
     primo = primo->next;
     T aux = p->info;
     delete p;
