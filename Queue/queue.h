@@ -18,13 +18,23 @@
 // };
 // template <class T> QueueItem<T>::QueueItem(const T& val, QueueItem* i) : info(val), next(i) {}
 
+// Queue class incomplete declaration
+template <class T> class Queue;
+// << overloading incomplete declaration
+template <class T> std::ostream& operator <<(std::ostream&, const Queue<T>&);
+// QueueItem << overloading incomplete declaration
+template <class T> std::ostream& operator <<(std::ostream&, const typename Queue<T>::QueueItem&);
+
 // Queue class
 template <class T> class Queue {
 private:
+    friend std::ostream& operator << <T>(std::ostream&, const Queue<T>&);
+
     // Single item nested class
     class QueueItem {
     private:
         friend class Queue<T>;
+        friend std::ostream& operator << <T>(std::ostream&, const class Queue<T>::QueueItem&);
     public:
         // Constructor
         QueueItem(const T&, QueueItem* =0);
@@ -35,6 +45,7 @@ private:
         // TO DO
         // QueueItem* copia(QueueItem);
     };
+
     // First and last item
     QueueItem* primo;
     QueueItem* ultimo;
@@ -56,6 +67,16 @@ public:
 
 // QueueItem constructor
 template <class T> Queue<T>::QueueItem::QueueItem(const T& val, QueueItem* q): info(val), next(q) {}
+
+template <class T> std::ostream& operator <<(std::ostream& os, const Queue<T>& q) {
+    // TO DO
+    return os;
+}
+
+template <class T> std::ostream& operator <<(std::ostream& os, const class Queue<T>::QueueItem& q) {
+    // TO DO
+    return os;
+}
 
 // TO DO
 // template <class T> class Queue<T>::QueueItem* Queue<T>::QueueItem::copia(QueueItem* q) {
