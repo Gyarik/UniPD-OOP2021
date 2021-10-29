@@ -36,8 +36,8 @@ private:
         // QueueItem* copia(QueueItem);
     };
     // First and last item
-    QueueItem<T>* primo;
-    QueueItem<T>* ultimo;
+    QueueItem* primo;
+    QueueItem* ultimo;
 public:
     // Constructor
     Queue();
