@@ -4,6 +4,7 @@
 #include "telefonata.h"
 #include "bolletta.h"
 #include "templates.h"
+#include "dataora.h"
 
 using std::cout;
 using std::cin;
@@ -56,6 +57,12 @@ int main() {
 
 	cout << min(9, 3) << min(3*16, 50-2) << endl;
 	cout << min(orario(4), orario(4, 5, 6)) << endl;
+
+	cout << endl;
+
+	dataora d(2000, 2, 29);
+	d.AvanzaUnGiorno();
+	cout << d.Giorno() << '/' << d.Mese() << '/' << d.Anno() << endl;
 
 	return 0;
 }
