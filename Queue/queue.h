@@ -3,21 +3,6 @@
 
 #include <iostream>
 
-// DEPRECATED
-// Single item class
-// template <class T> class QueueItem {
-// public:
-//     // Constructor
-//     QueueItem(const T&, QueueItem* =0);
-//     // Data
-//     T info;
-//     // Pointer to next item (?)
-//     QueueItem* next;
-//     // TO DO
-//     // QueueItem* copia(QueueItem);
-// };
-// template <class T> QueueItem<T>::QueueItem(const T& val, QueueItem* i) : info(val), next(i) {}
-
 // Queue class incomplete declaration
 template <class T> class Queue;
 // << overloading incomplete declaration
@@ -28,7 +13,7 @@ template <class T> std::ostream& operator <<(std::ostream&, const typename Queue
 // Queue class
 template <class T> class Queue {
 private:
-    friend std::ostream& operator << <T>(std::ostream&, const Queue<T>&);
+    friend std::ostream& operator << <T>(std::ostream&, const Queue&);
 
     // Single item nested class
     class QueueItem {
@@ -43,16 +28,17 @@ private:
         // Pointer to next item
         QueueItem* next;
         // TO DO
-        // QueueItem* copia(QueueItem);
+        static QueueItem* copia(QueueItem*);
     };
 
     // First and last item
     QueueItem* primo;
     QueueItem* ultimo;
 public:
-    // Constructor
+    // Constructors
     Queue();
-    // Queue emptiness checl
+    Queue(const Queue&);
+    // Queue emptiness check
     bool empty() const;
     // Adds item to queue
     void add(const T&);
@@ -60,34 +46,26 @@ public:
     T remove();
     // Destructor
     ~Queue();
-    // TO DO
-    // Queue(const Queue&);
-    // Queue& operator =(const Queue&);
 };
 
 // QueueItem constructor
 template <class T> Queue<T>::QueueItem::QueueItem(const T& val, QueueItem* q): info(val), next(q) {}
 
-template <class T> std::ostream& operator <<(std::ostream& os, const Queue<T>& q) {
-    // TO DO
-    return os;
+// Deep item copy
+template <class T> class Queue<T>::QueueItem* Queue<T>::QueueItem::copia(Queue<T>::QueueItem* q) {
+    // If item is null, return null
+    if (q == nullptr){
+        return nullptr;
+    }
+    // Otherwise recursively copy all the items
+    return new QueueItem(q->info, copia(q->next));
 }
 
-template <class T> std::ostream& operator <<(std::ostream& os, const class Queue<T>::QueueItem& q) {
-    // TO DO
-    return os;
-}
-
-// TO DO
-// template <class T> class Queue<T>::QueueItem* Queue<T>::QueueItem::copia(QueueItem* q) {
-// 	if(!q)
-// 		return 0;
-// 	else
-// 		return new QueueItem(q->info, copia(q->next));
-// }
-
-// Queue constructor
+// Queue default constructor
 template <class T> Queue<T>::Queue() : primo(0), ultimo(0) {}
+
+// Queue copy constructor
+template <class T> Queue<T>::Queue(const Queue& q) : ultimo(nullptr), primo(Queue<T>::QueueItem::copia(q.primo)) {}
 
 template <class T> bool Queue<T>::empty() const {
     // Simple bool check
@@ -97,10 +75,10 @@ template <class T> bool Queue<T>::empty() const {
 template <class T> void Queue<T>::add(const T& val) {
     // If queue is empty, define a new item for both first and last place
     if(empty())
-        primo = ultimo = new Queue<T>::QueueItem(val);
+        primo = ultimo = new QueueItem(val);
     // Otherwise add to end of queue
     else {
-        ultimo->next = new Queue<T>::QueueItem(val);
+        ultimo->next = new QueueItem(val);
         ultimo = ultimo->next;
     }
 }
@@ -112,7 +90,7 @@ template <class T> T Queue<T>::remove() {
         exit(1);
     }
     // If queue is not empty, delete first place in the queue and return removed value of item
-    Queue<T>::QueueItem* p = primo;
+    QueueItem* p = primo;
     primo = primo->next;
     T aux = p->info;
     delete p;
@@ -124,17 +102,5 @@ template <class T> Queue<T>::~Queue() {
     while(!empty())
         remove();
 }
-
-// TO DO
-// template <class T> Queue<T>::Queue(const Queue& q) : primo(QueueItem<T>::copia(q.primo)) {
-//     QueueItem<T>* aux = primo;
-//     while(aux != nullptr) {
-//         ultimo = aux;
-//         aux = aux->next;
-//     }
-// }
-
-// TO DO
-// template <class T> typename Queue<T>::Queue& Queue<T>::operator =(const Queue& q) {}
 
 #endif
