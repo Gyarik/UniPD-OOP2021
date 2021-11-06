@@ -46,6 +46,8 @@ public:
     T remove();
     // Destructor
     ~Queue();
+    // Operator = overloading
+    Queue& operator =(const Queue&);
 };
 
 // QueueItem constructor
@@ -101,6 +103,16 @@ template <class T> Queue<T>::~Queue() {
     // Deep destruction
     while(!empty())
         remove();
+}
+
+template <class T> Queue<T>& Queue<T>::operator =(const Queue<T>& q) {
+    // Invoked object destruction, then deep copy
+    if(this != &q) {
+        while(!empty())
+            remove();
+        primo = Queue<T>::QueueItem::copia(q.primo);
+    }
+    return *this;
 }
 
 #endif

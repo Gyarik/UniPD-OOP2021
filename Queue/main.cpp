@@ -10,7 +10,12 @@ int main() {
     for(int i=0; i<10; i++)
         pi.add(i);
 
-    Queue<int> pi2 = pi;
+    Queue<int> pi2;
+
+    for(int i=10; i>0; i--)
+        pi2.add(i);
+
+    pi2 = pi;
 
     for(int i=0; i<10; i++)
         cout << pi.remove() << endl;
