@@ -19,6 +19,7 @@ private:
     class QueueItem {
     private:
         friend class Queue<T>;
+        friend std::ostream& operator << <T>(std::ostream&, const Queue&);
         friend std::ostream& operator << <T>(std::ostream&, const class Queue<T>::QueueItem&);
     public:
         // Constructor
@@ -100,9 +101,8 @@ template <class T> void Queue<T>::add(const T& val) {
 
 template <class T> T Queue<T>::remove() {
     if(empty()) {
-        // BAD PRACTICE, will improve later
         std::cerr << "remove() on empty queue" << std::endl;
-        exit(1);
+        exit(1);    // BAD PRACTICE, will improve later
     }
     // If queue is not empty, delete first place in the queue and return removed value of item
     QueueItem* p = primo;
@@ -130,6 +130,11 @@ template <class T> Queue<T>& Queue<T>::operator =(const Queue<T>& q) {
 
 template <class T> std::ostream& operator <<(std::ostream& os, const Queue<T>& q) {
     return Queue<T>::print_os(os, q.primo);
+}
+
+template <class T> std::ostream& operator <<(std::ostream& os, const typename Queue<T>::QueueItem& q) {
+    // I honestly have no idea how this is useful
+    return os << q.info;
 }
 
 #endif
