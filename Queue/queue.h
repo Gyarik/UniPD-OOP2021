@@ -27,13 +27,17 @@ private:
         T info;
         // Pointer to next item
         QueueItem* next;
-        // TO DO
+        // Deep item copy
         static QueueItem* copia(QueueItem*);
     };
 
     // First and last item
     QueueItem* primo;
     QueueItem* ultimo;
+
+    // Auxiliary function for output << overloading
+    static std::ostream& print_os(std::ostream&, QueueItem*);
+
 public:
     // Constructors
     Queue();
@@ -61,6 +65,15 @@ template <class T> class Queue<T>::QueueItem* Queue<T>::QueueItem::copia(Queue<T
     }
     // Otherwise recursively copy all the items
     return new QueueItem(q->info, copia(q->next));
+}
+
+template <class T> std::ostream& Queue<T>::print_os(std::ostream& os, typename Queue<T>::QueueItem* q) {
+    // If item is null, return ostream as is
+    if(q == nullptr)
+        return os;
+    // Otherwise put data on ostream, then recursively call function for next item
+    os << q->info << ' ';
+    return print_os(os, q->next);
 }
 
 // Queue default constructor
@@ -113,6 +126,10 @@ template <class T> Queue<T>& Queue<T>::operator =(const Queue<T>& q) {
         primo = Queue<T>::QueueItem::copia(q.primo);
     }
     return *this;
+}
+
+template <class T> std::ostream& operator <<(std::ostream& os, const Queue<T>& q) {
+    return Queue<T>::print_os(os, q.primo);
 }
 
 #endif

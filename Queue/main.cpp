@@ -17,11 +17,13 @@ int main() {
 
     pi2 = pi;
 
-    for(int i=0; i<10; i++)
-        cout << pi.remove() << endl;
+    cout << pi2 << endl;
 
-    for(int i=0; i<10; i++)
-        cout << pi2.remove() << endl;
+    // for(int i=0; i<10; i++)
+    //     cout << pi.remove() << endl;
+
+    // for(int i=0; i<10; i++)
+    //     cout << pi2.remove() << endl;
 
     return 0;
 }
