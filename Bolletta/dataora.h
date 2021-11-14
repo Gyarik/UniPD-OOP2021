@@ -16,7 +16,7 @@ private:
     // Year
     int anno;
 public:
-    // Default constructor (day, month, year, hour, minute, second)
+    // Default constructor (year, month, day, hour, minute, second)
     dataora(int =2000, int =1, int =1, int =0, int =0, int =0);
 
     // Return day
