@@ -1,6 +1,7 @@
 #include <iostream>
 #include "pol.h"
 #include "rect.h"
+#include "square.h"
 
 using std::cout;
 using std::endl;
@@ -40,9 +41,9 @@ int main() {
     cout << pol2.perimeter() << endl;   // Same as pol1
 
     // Proper square
-    rectangle rec(u);
-    cout << rec.perimeter() << endl;    // Same as pol2
-    cout << rec.area() << endl;         // 1
+    square sqr(u);
+    cout << sqr.perimeter() << endl;    // Same as pol2
+    cout << sqr.area() << endl;         // 1
 
     return 0;
 }
