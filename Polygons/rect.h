@@ -1,5 +1,5 @@
-#ifndef RET_H_
-#define RET_H_
+#ifndef RECT_H_
+#define RECT_H_
 
 #include "pol.h"
 
