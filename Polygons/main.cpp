@@ -1,5 +1,6 @@
 #include <iostream>
 #include "pol.h"
+#include "rect.h"
 
 using std::cout;
 using std::endl;
@@ -37,6 +38,11 @@ int main() {
     // pol2 should become pol1
     pol2 = pol1;
     cout << pol2.perimeter() << endl;   // Same as pol1
+
+    // Proper square
+    rectangle rec(u);
+    cout << rec.perimeter() << endl;    // Same as pol2
+    cout << rec.area() << endl;         // 1
 
     return 0;
 }
