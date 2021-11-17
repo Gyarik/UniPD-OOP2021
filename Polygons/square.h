@@ -7,7 +7,7 @@
 class square : public rectangle {
 public:
     // Constructor
-    square(const point v[]);
+    square(const point v[] =0);
     // Perimeter
     double perimeter() const;
     // Area

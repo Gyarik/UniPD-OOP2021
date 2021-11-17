@@ -5,7 +5,7 @@
 
 class triangle : public polygon {
 public:
-    triangle(const point v[]);
+    triangle(const point v[] =0);
     double area() const;
 };
 

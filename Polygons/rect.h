@@ -7,7 +7,7 @@
 class rectangle : public polygon {
 public:
     // Constructor
-    rectangle(const point v[]);
+    rectangle(const point v[] =0);
     // Perimeter
     double perimeter() const;
     // Area

@@ -31,7 +31,8 @@ int main() {
         cin >> x >> y;
         v[i] = point(x, y);
     }
-    square sq1(v), sq2 = sq1;
+    square sq1(v), sq2;
+    sq2 = sq1;
 
     cout << "Triangle:\n" << tri.perimeter() << '\t' << tri.area() << endl;
     cout << "Rectangle:\n" << rec2.perimeter() << '\t' << rec2.area() << endl;
