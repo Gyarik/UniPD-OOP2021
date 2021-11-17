@@ -21,7 +21,7 @@ const point* polygon::copy(unsigned int n, const point* p) {
     return v;
 }
 
-polygon::polygon(unsigned int n, const point v[]) : nvertex(n), pp(v) {}
+polygon::polygon(unsigned int n, const point v[]) : nvertex(n), pp(polygon::copy(nvertex, v)) {}
 
 polygon::~polygon() {
     // I guess it's how it works? Not sure
