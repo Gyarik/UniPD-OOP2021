@@ -15,14 +15,14 @@ public:
 
 	operator int() { return sec; }
 
-	// Forwards time by one hour, second method has side effects
+	// Forward time by one hour, second method has side effects
 	orario UnOraPiuTardi() const;
 	void AvanzaUnOra();
 
-	// Prints seconds
+	// Return seconds
 	void StampaSecondi() const;
 
-	// Prints lunch time :)
+	// Return lunch time :)
 	static orario OraDiPranzo();
 
 	// Seconds in an hour and in a day
