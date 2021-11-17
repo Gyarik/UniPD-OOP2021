@@ -58,7 +58,7 @@ private:
         // If both nodes don't exist, return true
         if(!r1 && !r2)
             return true;
-        // If only one doesn't exist, return true
+        // If only one doesn't exist, return false
         if(!r1 || !r2)
             return false;
         // Otherwise search through every node (recursively)
